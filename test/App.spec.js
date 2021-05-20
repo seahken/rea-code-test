@@ -9,45 +9,45 @@ describe('App data', () => {
 
   const testCases = [{
       title: 'Initial Render',
-      propResults: results,
-      propSaved: saved,
+      triggerSaveIds: [],
+      triggerRemoveIds: [],
       expectedResultIds: ['1', '2', '3'],
       expectedSavedIds: ['4'],
-
     },
     {
       title: 'Trigger Save id 3',
-      propResults: results,
-      propSaved: saved,
       triggerSaveIds: ['3'],
+      triggerRemoveIds: [],
       expectedResultIds: ['1', '2', '3'],
       expectedSavedIds: ['4', '3'],
     },
     {
       title: 'Trigger Save id 1, 2',
-      propResults: results,
-      propSaved: saved,
       triggerSaveIds: ['1', '2'],
+      triggerRemoveIds: [],
       expectedResultIds: ['1', '2', '3'],
       expectedSavedIds: ['4', '1', '2'],
     },
     {
+      title: 'Trigger Save id 1, 2, 3',
+      triggerSaveIds: ['1', '2'],
+      triggerRemoveIds: [],
+      expectedResultIds: ['1', '2', '3'],
+      expectedSavedIds: ['4', '1', '2', '3'],
+    },
+    {
       title: 'Trigger Save id 3 & remove id 4',
-      propResults: results,
-      propSaved: saved,
       triggerSaveIds: ['3'],
       triggerRemoveIds: ['4'],
       expectedResultIds: ['1', '2', '3'],
       expectedSavedIds: ['3'],
     },
     {
-      title: 'Trigger Save id 3 & remove id 3, 4',
-      propResults: results,
-      propSaved: saved,
+      title: 'Trigger Save id 1, 3 & remove id 3, 4',
       triggerSaveIds: ['3'],
       triggerRemoveIds: ['3', '4'],
       expectedResultIds: ['1', '2', '3'],
-      expectedSavedIds: [],
+      expectedSavedIds: ['1'],
     }
   ]
 
@@ -55,17 +55,29 @@ describe('App data', () => {
     test(testCase.title, async () => {
       const wrapper = shallowMount(App, {
         propsData: {
-          results: testCase.propResults,
-          saved: testCase.propSaved
+          results,
+          saved
         }
       })
 
-      const computedResultIds = wrapper.vm.renderedResults.map(item => item.id).sort()
-      const expectedResultIds = testCase.expectedResultIds.sort()
+      // If available, invoke save property function
+      testCase.triggerSaveIds.forEach((triggerSaveId) => {
+        wrapper.vm.saveProperty(triggerSaveId)
+      })
+
+      // If available, invoke remove property function
+      testCase.triggerRemoveIds.forEach((triggerRemoveId) => {
+        wrapper.vm.removeProperty(triggerRemoveId)
+      })
+
+      // Compare id's of renderedResults to expectedResults
+      const computedResultIds = wrapper.vm.renderedResults.map(item => item.id)
+      const expectedResultIds = testCase.expectedResultIds
       expect(computedResultIds).toEqual(expectedResultIds)
 
-      const computedSavedIds = wrapper.vm.renderedSaved.map(item => item.id).sort()
-      const expectedSavedIds = testCase.expectedSavedIds.sort()
+      // Compare id's of renderedSaved to expectedSaved
+      const computedSavedIds = wrapper.vm.renderedSaved.map(item => item.id)
+      const expectedSavedIds = testCase.expectedSavedIds
       expect(computedSavedIds).toEqual(expectedSavedIds)
     })
   })
