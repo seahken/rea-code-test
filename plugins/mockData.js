@@ -51,3 +51,7 @@ export const getMockData = () => {
     }, 500)
   })
 }
+
+export const getMockDataTest = () => {
+  return JSON.stringify(data)
+}
