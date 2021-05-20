@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "dev-test": "concurrently \"yarn dev\" \"yarn test-watch\"",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test": "jest"
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "dependencies": {
+    "concurrently": "^6.1.0",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3"
   },
