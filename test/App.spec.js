@@ -36,6 +36,13 @@ describe('App data', () => {
       expectedSavedIds: ['4', '1', '2', '3'],
     },
     {
+      title: 'Trigger remove id 4',
+      triggerSaveIds: [],
+      triggerRemoveIds: ['4'],
+      expectedResultIds: ['1', '2', '3'],
+      expectedSavedIds: [],
+    },
+    {
       title: 'Trigger Save id 3 & remove id 4',
       triggerSaveIds: ['3'],
       triggerRemoveIds: ['4'],
