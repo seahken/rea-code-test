@@ -1,34 +1,24 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        rea-code-test
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <App :results="results" :saved="saved" />
   </div>
 </template>
 
 <script>
-export default {}
+import { getMockData } from '~/plugins/mockData'
+
+import App from '~/components/App'
+
+export default {
+  components: {
+    App
+  },
+  async asyncData() {
+    const { results, saved } = JSON.parse(await getMockData())
+
+    return { results, saved }
+  }
+}
 </script>
 
 <style>
