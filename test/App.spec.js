@@ -30,7 +30,7 @@ describe('App data', () => {
     },
     {
       title: 'Trigger Save id 1, 2, 3',
-      triggerSaveIds: ['1', '2'],
+      triggerSaveIds: ['1', '2', '3'],
       triggerRemoveIds: [],
       expectedResultIds: ['1', '2', '3'],
       expectedSavedIds: ['4', '1', '2', '3'],
@@ -44,7 +44,7 @@ describe('App data', () => {
     },
     {
       title: 'Trigger Save id 1, 3 & remove id 3, 4',
-      triggerSaveIds: ['3'],
+      triggerSaveIds: ['3', '1'],
       triggerRemoveIds: ['3', '4'],
       expectedResultIds: ['1', '2', '3'],
       expectedSavedIds: ['1'],
@@ -52,7 +52,7 @@ describe('App data', () => {
   ]
 
   testCases.forEach((testCase) => {
-    test(testCase.title, async () => {
+    test(testCase.title, () => {
       const wrapper = shallowMount(App, {
         propsData: {
           results,
