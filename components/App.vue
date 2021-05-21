@@ -1,12 +1,18 @@
 <template>
   <div>
-
+    <Column title="Results" :properties="renderedResults" />
+    <Column title="Saved Properties" :properties="renderedSaved" />
   </div>
 </template>
 
 <script>
+import Column from '~/components/Column'
+
 export default {
   name: 'App',
+  components: {
+    Column
+  },
   data() {
     return {
       renderedResults: [ ...this.results ],
