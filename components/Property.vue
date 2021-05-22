@@ -59,10 +59,11 @@ export default {
     buttonText() {
       if (this.isResultsColumn) {
         if (this.isPropertyAdded) return 'Already Added'
-        return 'Add Property'
       }
 
       if (this.isSavedColumn) return 'Remove Property'
+      
+      return 'Add Property'
     },
     buttonStyles() {
       const styles = [{ display: 'none' }]
