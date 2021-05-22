@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import Property from '@/components/Property.vue'
 
 import { getMockDataTest } from '~/plugins/mockData'
@@ -54,6 +54,38 @@ describe('App data', () => {
   ]
 
   testCases.forEach((testCase, i) => {
-    
+    test(testCase.title, async () => {
+      const wrapper = mount(Property, {
+        propsData: {
+          propertyData: results[0],
+          isResultsColumn: testCase.isResultsColumn,
+          isSavedColumn: testCase.isSavedColumn,
+          isPropertyAdded: testCase.isPropertyAdded
+        }
+      })
+
+      // Simulate hover action
+      if (testCase.isHovering) wrapper.trigger('mouseenter')
+
+      await wrapper.vm.$nextTick()
+
+      // Check if button exists
+      const button = wrapper.find('.button')
+      const expectedSeeButton = testCase.expectedSeeAddPropertyButton
+        || testCase.expectedSeeAlreadyAddedNotification
+        || testCase.expectedSeeRemovePropertyButton
+
+      expect(button.isVisible()).toEqual(expectedSeeButton)
+
+      // if button text is visible, check with button text is correct
+      if (expectedSeeButton) {
+        let buttonText = ''
+        if (testCase.expectedSeeAddPropertyButton) buttonText = 'Add Property'
+        if (testCase.expectedSeeAlreadyAddedNotification) buttonText = 'Already Added'
+        if (testCase.expectedSeeRemovePropertyButton) buttonText = 'Remove Property'
+
+        expect(button.text()).toEqual(buttonText)
+      }
+    })
   })
 })
