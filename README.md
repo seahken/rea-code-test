@@ -3,7 +3,7 @@
 Ken's solution for REA's take home coding test.
 
 ## Build requirements:
-- [node](https://nodejs.org/en/) version 14
+- [node](https://nodejs.org/en/) (recommended version 14)
 - [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
 
 This project is built on [Nuxt.js](https://nuxtjs.org).
