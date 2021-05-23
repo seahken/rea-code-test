@@ -1,5 +1,17 @@
 # rea-code-test
 
+Ken's solution for REA's take home coding test.
+
+## Build requirements:
+- [node](https://nodejs.org/en/) version 14
+- [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
+
+This project is built on [Nuxt.js](https://nuxtjs.org).
+
+This project has broken down into 3 components: `App > Column > Property`.
+
+Mock data has been added as an exportable module on `/plugins/mockData.js`.
+
 ## Build Setup
 
 ```bash
@@ -16,5 +28,3 @@ $ yarn dev
 # serve with hot reload at localhost:3000 and jest test --watch
 $ yarn dev-test
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
