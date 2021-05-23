@@ -14,7 +14,8 @@ describe('App data', () => {
       isHovering: false,
       isPropertyAdded: false,
       expectedSeeAddPropertyButton: false,
-      expectedSeeRemovePropertyButton: false
+      expectedSeeRemovePropertyButton: false,
+      expectedButtonAction: null
     },
     {
       title: 'for resutls, on hover, see add property button',
@@ -22,7 +23,8 @@ describe('App data', () => {
       isHovering: true,
       isPropertyAdded: false,
       expectedSeeAddPropertyButton: true,
-      expectedSeeRemovePropertyButton: false
+      expectedSeeRemovePropertyButton: false,
+      expectedButtonAction: 'addProperty'
     },
     {
       title: 'for results, on hover, if already added, see already added notification',
@@ -31,7 +33,8 @@ describe('App data', () => {
       isPropertyAdded: true,
       expectedSeeAddPropertyButton: false,
       expectedSeeAlreadyAddedNotification: true,
-      expectedSeeRemovePropertyButton: false
+      expectedSeeRemovePropertyButton: false,
+      expectedButtonAction: null
     },
     {
       title: 'for saved property, no see remove property button',
@@ -40,7 +43,8 @@ describe('App data', () => {
       isHovering: false,
       expectedSeeAddPropertyButton: false,
       expectedSeeAlreadyAddedNotification: false,
-      expectedSeeRemovePropertyButton: false
+      expectedSeeRemovePropertyButton: false,
+      expectedButtonAction: null
     },
     {
       title: 'for saved property, on hover, see remove property button',
@@ -49,7 +53,8 @@ describe('App data', () => {
       isHovering: true,
       expectedSeeAddPropertyButton: false,
       expectedSeeAlreadyAddedNotification: false,
-      expectedSeeRemovePropertyButton: true
+      expectedSeeRemovePropertyButton: true,
+      expectedButtonAction: 'removeProperty'
     }
   ]
 
@@ -77,7 +82,7 @@ describe('App data', () => {
 
       expect(button.isVisible()).toEqual(expectedSeeButton)
 
-      // if button text is visible, check with button text is correct
+      // if button text is visible, test button text is correct
       if (expectedSeeButton) {
         let buttonText = ''
         if (testCase.expectedSeeAddPropertyButton) buttonText = 'Add Property'
@@ -86,6 +91,10 @@ describe('App data', () => {
 
         expect(button.text()).toEqual(buttonText)
       }
+
+      // Test if emiited events is correct
+      wrapper.vm.buttonAction()
+      expect(wrapper.emitted(testCase.expectedButtonAction)).toBeTruthy()
     })
   })
 })
