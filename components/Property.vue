@@ -95,12 +95,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .property {
   box-shadow: rgb(0 0 0 / 20%) 0px 0.0625rem 0.1875rem 0px;
   border-radius: 0.1875rem;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   position: relative;
+  max-width: 18rem;
+  margin-bottom: 2rem;
 }
 
 .header {
@@ -126,9 +128,9 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
-}
 
-.button.is-disabled {
-  cursor: not-allowed;
+  &.is-disabled {
+    cursor: not-allowed;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="column">
     <h2>{{ title }}</h2>
     <div class="wrapper">
       <Property
@@ -59,3 +59,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.column {
+  background-color: #EEEEEE;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+h2 {
+  text-align: center;
+}
+</style>

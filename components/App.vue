@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <Column
       title="Results"
       :properties="renderedResults"
@@ -55,3 +55,16 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  > div {
+    margin: 0 1rem 5rem;
+  }
+}
+</style>
