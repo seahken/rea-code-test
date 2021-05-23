@@ -10,6 +10,7 @@
         @removeProperty="removeProperty"
         :isResultsColumn="isResultsColumn"
         :isSavedColumn="isSavedColumn"
+        :isPropertyAdded="isPropertyAdded(property.id)"
       />
     </div>
   </div>
@@ -39,6 +40,10 @@ export default {
     isSavedColumn: {
       type: Boolean,
       default: false
+    },
+    renderedSaved: {
+      type: Array,
+      default: () => []
     }
   },
   methods: {
@@ -47,6 +52,9 @@ export default {
     },
     removeProperty(id) {
       this.$emit('removeProperty', id)
+    },
+    isPropertyAdded(id) {
+      return this.renderedSaved.findIndex(item => item.id === id) !== -1
     }
   }
 }

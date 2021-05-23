@@ -3,6 +3,7 @@
     <Column
       title="Results"
       :properties="renderedResults"
+      :renderedSaved="renderedSaved"
       @saveProperty="saveProperty"
       @removeProperty="removeProperty"
       :isResultsColumn="true"
@@ -43,9 +44,8 @@ export default {
   },
   methods: {
     saveProperty(id) {
-      console.log('id', id)
       const savedProperty = this.renderedResults.find(item => item.id === id)
-      this.renderedSaved.push(savedProperty)
+      if (this.renderedSaved.findIndex(item => item.id === id) === -1) this.renderedSaved.push(savedProperty)
     },
     removeProperty(id) {
       const removedPropertyIndex = this.renderedSaved.findIndex(item => item.id === id)
