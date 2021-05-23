@@ -18,13 +18,13 @@ describe('App data', () => {
       expectedButtonAction: null
     },
     {
-      title: 'for resutls, on hover, see add property button',
+      title: 'for results, on hover, see add property button',
       isResultsColumn: true,
       isHovering: true,
       isPropertyAdded: false,
       expectedSeeAddPropertyButton: true,
       expectedSeeRemovePropertyButton: false,
-      expectedButtonAction: 'addProperty'
+      expectedButtonAction: 'saveProperty'
     },
     {
       title: 'for results, on hover, if already added, see already added notification',
