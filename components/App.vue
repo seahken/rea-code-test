@@ -1,7 +1,19 @@
 <template>
   <div>
-    <Column title="Results" :properties="renderedResults" />
-    <Column title="Saved Properties" :properties="renderedSaved" />
+    <Column
+      title="Results"
+      :properties="renderedResults"
+      @saveProperty="saveProperty"
+      @removeProperty="removeProperty"
+      :isResultsColumn="true"
+    />
+    <Column
+      title="Saved Properties"
+      :properties="renderedSaved"
+      @saveProperty="saveProperty"
+      @removeProperty="removeProperty"
+      :isSavedColumn="true"
+    />
   </div>
 </template>
 
@@ -31,6 +43,7 @@ export default {
   },
   methods: {
     saveProperty(id) {
+      console.log('id', id)
       const savedProperty = this.renderedResults.find(item => item.id === id)
       this.renderedSaved.push(savedProperty)
     },

@@ -2,7 +2,15 @@
   <div>
     <h2>{{ title }}</h2>
     <div class="wrapper">
-      <Property v-for="property in properties" :propertyData="property" />
+      <Property
+        v-for="property in properties"
+        :propertyData="property"
+        :key="property.id"
+        @saveProperty="saveProperty"
+        @removeProperty="removeProperty"
+        :isResultsColumn="isResultsColumn"
+        :isSavedColumn="isSavedColumn"
+      />
     </div>
   </div>
 </template>
@@ -23,6 +31,22 @@ export default {
     properties: {
       type: Array,
       default: () => []
+    },
+    isResultsColumn: {
+      type: Boolean,
+      default: false
+    },
+    isSavedColumn: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    saveProperty(id) {
+      this.$emit('saveProperty', id)
+    },
+    removeProperty(id) {
+      this.$emit('removeProperty', id)
     }
   }
 }
