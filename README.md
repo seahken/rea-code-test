@@ -1,6 +1,6 @@
 # rea-code-test
 
-Ken's solution for REA's take home coding test.
+A solution for REA's take home coding test.
 
 ## Build requirements:
 - [node](https://nodejs.org/en/) (recommended version 14)
